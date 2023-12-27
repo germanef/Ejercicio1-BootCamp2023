@@ -73,7 +73,6 @@ then
 	echo "La carpeta $REPO existe"
 else
 	git clone -b app-295devops-travel https://github.com/roxsross/bootcamp-devops-2023/tree/clase2-linux-bash/$REPO
-#https://github.com/roxsross/bootcamp-devops-2023.git
 fi
 
 echo "Instalando web"
