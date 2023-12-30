@@ -1,7 +1,7 @@
 #!/bin/bash
 
-REPO="app-295devops-travel"
-USERID=$(id -u)
+REPO="Ejercicio1-BootCamp2023"
+USERID=$(id -u) #variable para validar el usuario 
 
 echo "//=========================================//"
 echo "//============Inicio del Script============//"
@@ -17,7 +17,7 @@ sudo apt-get update
 
 echo "====Servidor Actualizado===="
 
-#Verificando  GIT
+########Verificando  GIT
 if dpkg -l |grep -q git ;
 then
         echo "Ya está instalado GIT"
@@ -26,7 +26,7 @@ else
         sudo apt install git -y
 fi
 
-#Verificando MariaDB Server
+########Verificando MariaDB Server
 if dpkg -l |grep -q mariadb-server ;
 then
         echo "Ya está instalado MariaDB Server"
@@ -44,11 +44,10 @@ else
 	FLUSH PRIVILEGES;"
 
 	#Agregar datos a la database devopstravel 
-	mysql < database/devopstravel.sql
-
+	#mysql < database/devopstravel.sql
 fi
 
-#Verificando Apache2
+########Verificando Apache2
 if dpkg -l |grep -q apache2 ;
 then
 	echo "Ya está instalado"
@@ -63,16 +62,19 @@ else
 
 	#version php
 	php -v
-	
-	#
+
+	#cambiamos el nombre del index para evitar inconvenientes
+	mv /var/www/html/index.html /var/www/html/index.html.bkp
 
 fi
 
 if [ -d "$REPO" ] ;
 then
 	echo "La carpeta $REPO existe"
+	cd $REPO
+	git pull origin ejercicio1
 else
-	git clone -b app-295devops-travel https://github.com/roxsross/bootcamp-devops-2023/tree/clase2-linux-bash/$REPO
+	git clone -b Ejercicio1-BootCamp2023 https://github.com/germanef/$REPO.git
 fi
 
 echo "Instalando web"
